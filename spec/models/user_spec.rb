@@ -5,4 +5,10 @@ RSpec.describe User, type: :model do
     it { should validate_presence_of(:email) }
     it { should validate_presence_of(:password) }
   end
+
+  scenario 'creation generates key' do
+    user = User.create(email: 'test@email.com',
+                       password: 'testing')
+    expect(user.api_key).not_to eq(nil)
+  end
 end
