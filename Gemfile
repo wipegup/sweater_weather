@@ -43,6 +43,7 @@ group :development, :test do
   gem 'launchy'
   gem 'capybara'
   gem 'rspec-rails'
+  gem 'webdrivers'
   gem 'webmock'
 end
 
