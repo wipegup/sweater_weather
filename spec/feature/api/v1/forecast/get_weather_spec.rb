@@ -5,7 +5,7 @@ describe 'call to forecast with location' do
     body =  File.open('./api_responses/dark_sky.json')
     stub_request(:get, url).to_return(body: body)
 
-    f = Faraday.get(url)
-    
+    visit '/api/v1/forecast?location=Los Angeles,CA'
+
   end
 end
