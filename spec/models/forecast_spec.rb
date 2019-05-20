@@ -4,7 +4,7 @@ describe 'Call to Forecast Model with Darksky data' do
   scenario 'returns needed forecast data' do
     dark_sky_json =  JSON.load(File.open('./api_responses/dark_sky.json'))
 
-    forecast = Forecast.new(dark_sky_json)
+    # forecast = Forecast.new(dark_sky_json)
 
     #Today:
       # Temp: Current, Day High, Day Low, Feels Like
@@ -16,16 +16,21 @@ describe 'Call to Forecast Model with Darksky data' do
       # Time, Date, Location # Unix time stamps
       # Current Weather:
         # Today/Tonight descriptions
-        # Current (partly cloudy e.g) ['currently']['summary']
+        # Current (partly cloudy e.g) ['currently']['icon]
 
     # Forecast
       # Hours:
-      # ['hourly']
-        # Temp, Type (pt.cloudy)
+      # ['hourly']['data'](list)
+      # ['time'](unix)
+        # Temp, Type (pt.cloudy) ['icon']['temperature']
       # Days
-        # Temp, Precip chance, High, Low
+        # 'daily'
+        # 'data'
+        # Precip chance, High, Low
+        # 'time'-> date, 'temperatureHigh', 'temperatureLow', 'precipProbability'
+        #
 
-    expect()
-    binding.pry
+        # Time conversion using Time.at(<unix_ts>)
+    # binding.pry
   end
 end
