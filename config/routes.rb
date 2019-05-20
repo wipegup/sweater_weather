@@ -6,6 +6,8 @@ Rails.application.routes.draw do
       get 'forecast', to: 'forecast#show'
       post 'sessions', to: 'sessions#create'
       get 'backgrounds', to: 'backgrounds#show'
+      resources :favorites, only: [:index, :create]
+      delete 'favorites', to: 'favorites#destroy'
     end
 
   end
