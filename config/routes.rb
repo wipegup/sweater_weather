@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       get 'backgrounds', to: 'backgrounds#show'
       resources :favorites, only: [:index, :create]
       delete 'favorites', to: 'favorites#destroy'
+      resources :users, only: [:create]
     end
 
   end
