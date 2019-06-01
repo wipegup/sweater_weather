@@ -13,5 +13,8 @@ describe 'Users API' do
 
     expect(created_user.email).to eq(user[:email])
     expect(created_user.api_key).not_to eq(nil)
+
+    json_response = JSON.parse(response.body, symbolize_names: true)
+    expect(json_response[:api_key]).to eq(created_user.api_key)
   end
 end

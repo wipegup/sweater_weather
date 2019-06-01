@@ -37,7 +37,7 @@ describe 'request using city' do
     # geo_url = "https://maps.googleapis.com/maps/api/geocode/json?address=los angeles,ca&key=#{ENV['GOOGLE_API']}"
     # geo_body =  File.open('./api_responses/geocode_la.json')
     # stub_request(:get, geo_url).to_return(body: geo_body)
-    
+
     expect(response).to be_successful
     forecast = JSON.parse(response.body, symbolize_names: true)
 
@@ -50,6 +50,5 @@ describe 'request using city' do
     keys.each do |key|
       expect(forecast.keys).to include(key)
     end
-  end
   end
 end
