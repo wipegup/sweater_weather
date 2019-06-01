@@ -7,5 +7,7 @@ class Api::V1::UsersController < ApplicationController
 
     user = User.new(email: email, password: password, password_confirmation: password_confirmation)
     user.save
+
+    render json: {api_key: user.api_key}
   end
 end
