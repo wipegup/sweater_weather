@@ -6,14 +6,16 @@ describe 'request using city' do
 
     expect(response).to be_successful
 
+    forecast = JSON.parse(response.body, symbolize_names: true)
+
     latitude = 39.7392358
     longitude = -104.990251
-    expect(response['latitude']).to eq(latitude)
-    expect(response['longitude']).to eq(longitude)
-    keys =  %w(currently minutely hourly daily)
+    expect(forecast[:latitude]).to eq(latitude)
+    expect(forecast[:longitude]).to eq(longitude)
 
+    keys =  %i(currently minutely hourly daily)
     keys.each do |key|
-      expect(response.keys).to include(key)
+      expect(forecast.keys).to include(key)
     end
 
 
