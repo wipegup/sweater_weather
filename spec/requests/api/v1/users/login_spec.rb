@@ -9,6 +9,6 @@ describe 'Sessions API' do
     expect(response).to be_successful
 
     json_response = JSON.parse(response.body, symbolize_names: true)
-    expect(json_response[:api_key]).to eq(created_user.api_key)
+    expect(json_response[:api_key]).to eq(user.api_key)
   end
 end
