@@ -5,7 +5,7 @@ class Api::V1::SessionsController < ApplicationController
     if user && user.authenticate(request.headers['password'])
       render json: {api_key: user.api_key}
     else
-      render json: {message: "Unauthorized"}
+      render status: 401, json: {message: "Unauthorized"}
     end
   end
 end
