@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-describe 'Users API' do
+describe Api::V1::FavoritesController do
   it 'can add favorite location' do
     user = create(:user)
     post '/api/v1/favorites',
-      body: {
+      headers: {"ACCEPT" => "application/json",
         "location": "Denver, CO",
         "api_key": "123"
       }
@@ -12,7 +12,7 @@ describe 'Users API' do
     expect(response).to have_http_status(401)
 
     post '/api/v1/favorites',
-      body: {
+      headers: {"ACCEPT" => "application/json",
         "location": "Denver, CO",
         "api_key": user.api_key
       }
