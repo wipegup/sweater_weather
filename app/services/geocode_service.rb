@@ -7,6 +7,14 @@ class GeocodeService
      [hash[:lat].to_s, hash[:lng].to_s].join(",")
    end
 
+   def place_name(lat_long_dict)
+     # https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=
+     lat_long_string = [lat_long_dict[:lat].to_s, lat_long_dict[:long].to_s].join(",")
+     response = conn.get('json', latlng: lat_long_string)
+     json= parse(response.body)
+     json[:results][0][:formatted_address]
+   end
+
  private
 
  def conn

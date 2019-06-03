@@ -10,23 +10,22 @@ describe 'antipode' do
     expect(response_json.keys).to include(:data)
 
     response_data = response_json[:data]
-
     data_keys = %i(id type attributes search_location)
-
+    data_dict = response_data[0]
     data_keys.each do |key|
-      expect(response_data).to include(key)
+      expect(data_dict).to include(key)
     end
 
     attribute_keys = %i(location_name forecast)
-
+    attribute_dict = data_dict[:attributes]
     attribute_keys.each do |key|
-      expect(response_data).to include(key)
+      expect(attribute_dict).to include(key)
     end
 
     forecast_keys = %i(summary current_temperature)
-
+    forecast_dict = attribute_dict[:forecast]
     forecast_keys.each do |key|
-      expect(response_data).to include(key)
+      expect(forecast_dict).to include(key)
     end
   end
 end
