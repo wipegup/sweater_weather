@@ -10,9 +10,5 @@ describe 'Background API' do
     json = JSON.parse(response.body, symbolize_names: true)
 
     expect(json.keys).to include(:url)
-
-    get json[:url]
-
-    expect(response).to be_successful
   end
 end
