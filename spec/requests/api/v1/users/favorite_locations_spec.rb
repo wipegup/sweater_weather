@@ -24,6 +24,10 @@ describe Api::V1::FavoritesController do
 
   it 'can get favorite locations' do
 
+    user = create(:user)
+    user.favorites.create(location: "Denver, CO")
+    user.favorites.create(location: "Los Angeles, CA")
+
     get '/api/v1/favorites'
 
     expect(response).to be_successful
