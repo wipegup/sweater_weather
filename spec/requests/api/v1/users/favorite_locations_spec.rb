@@ -24,15 +24,33 @@ describe Api::V1::FavoritesController do
 
   it 'can get favorite locations' do
 
+    user = create(:user)
+    user.favorites.create(location: "Denver, CO")
+    user.favorites.create(location: "Los Angeles, CA")
+
     get '/api/v1/favorites'
 
     expect(response).to be_successful
+
   end
 
   it 'can delete favorite location' do
+    user = create(:user)
+    user.favorites.create(location: "Denver, CO")
 
-    delete '/api/v1/favorites'
+    delete '/api/v1/favorites', headers: {
+      "location": "Denver, CO",
+      "api_key": "1234"
+    }
 
+    expect(response).to have_http_status(401)
+
+    delete '/api/v1/favorites', headers: {
+      "location": "Denver, CO",
+      "api_key": user.api_key
+    }
     expect(response).to be_successful
+
+    expect(user.favorites.count).to eq(0)
   end
 end
