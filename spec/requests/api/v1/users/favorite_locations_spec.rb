@@ -50,7 +50,9 @@ describe Api::V1::FavoritesController do
       "api_key": user.api_key
     }
     expect(response).to be_successful
-
     expect(user.favorites.count).to eq(0)
+
+    json = JSON.parse(response.body, symbolize_names: true)
+    expect(json[:status]).to eq("success")
   end
 end

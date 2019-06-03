@@ -12,6 +12,8 @@ class Api::V1::FavoritesController < ApplicationController
     if user
       favorite = user.favorites.find_by(location: request.headers['location'])
       favorite.destroy
+
+      render json: {status: 'success'}
     else
       render status: 401
     end
