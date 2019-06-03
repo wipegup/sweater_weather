@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       resources :favorites, only: [:index, :create]
       delete 'favorites', to: 'favorites#destroy'
       resources :users, only: [:create]
+      get 'antipode', to: 'antipode#show'
     end
 
   end
