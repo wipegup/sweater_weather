@@ -11,6 +11,7 @@ class Api::V1::AntipodeController < ApplicationController
       summary: raw_forecast[:currently][:summary],
       current_temperature: raw_forecast[:currently][:temperature]
     }
+
     data_dict = {
       id: 1,
       type: "antipode",
@@ -18,8 +19,9 @@ class Api::V1::AntipodeController < ApplicationController
         location_name: new_place_name,
         forecast: forecast,
       },
-      search_location: params[:loc]
+      search_location: geocoder.place_name({lat: original_location_lat_long[0], long: original_location_lat_long[1]})
     }
+    binding.pry
 
     render json: {data:[data_dict]}
   end
