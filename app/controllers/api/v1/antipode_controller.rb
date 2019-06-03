@@ -1,6 +1,8 @@
 class Api::V1::AntipodeController < ApplicationController
   def show
     original_location_lat_long = geocoder.lat_long(params[:loc]).split(",")
+    original_place = geocoder.place_name(original_location_lat_long)
+
     antipode_data = antipode.lat_long(*original_location_lat_long)
     antipode_lat_long = antipode_data[:data][:attributes]
 
@@ -16,13 +18,13 @@ class Api::V1::AntipodeController < ApplicationController
         location_name: new_place_name,
         forecast: forecast,
       },
-      search_location: geocoder.place_name({lat: original_location_lat_long[0], long: original_location_lat_long[1]})
+      search_location: original_place
     }
-    binding.pry
 
     render json: {data:[data_dict]}
   end
 
+  private
   def geocoder
     @_geocode_service ||= GeocodeService.new
   end
