@@ -32,6 +32,16 @@ describe Api::V1::FavoritesController do
 
     expect(response).to be_successful
 
+    json = JSON.parse(response.body, symbolize_names: true)
+
+    locations = json.map{ |loc| loc[:location]}
+
+    expect(locations).to include("Denver, CO")
+    expect(locations).to include("Los Angeles, CA")
+
+    json.each do |dict|
+      expect(dict.keys).to include(:current_weather)
+    end
   end
 
   it 'can delete favorite location' do
