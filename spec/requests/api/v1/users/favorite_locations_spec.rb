@@ -28,7 +28,11 @@ describe Api::V1::FavoritesController do
     user.favorites.create(location: "Denver, CO")
     user.favorites.create(location: "Los Angeles, CA")
 
-    get '/api/v1/favorites'
+    get '/api/v1/favorites', headers: { api_key: "1234"}
+
+    expect(response).to have_http_status(401)
+
+    get '/api/v1/favorites', headers: { api_key: user.api_key}
 
     expect(response).to be_successful
 
@@ -38,7 +42,6 @@ describe Api::V1::FavoritesController do
 
     expect(locations).to include("Denver, CO")
     expect(locations).to include("Los Angeles, CA")
-
     json.each do |dict|
       expect(dict.keys).to include(:current_weather)
     end
