@@ -7,10 +7,7 @@ class Api::V1::AntipodeController < ApplicationController
     new_place_name = geocoder.place_name(antipode_lat_long)
 
     raw_forecast = weather.forecast(new_place_name)
-    forecast = {
-      summary: raw_forecast[:currently][:summary],
-      current_temperature: raw_forecast[:currently][:temperature]
-    }
+    forecast = ForecastSerializer.from_darksky(raw_forecast)
 
     data_dict = {
       id: 1,
