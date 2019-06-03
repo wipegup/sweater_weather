@@ -2,7 +2,7 @@ class AntipodeService
   include ApiService
 
   def lat_long(lat, long)
-    parse(conn.get('antipodes', {lat: lat, long: long}).body)
+    parse(conn.get('antipodes', {lat: lat, long: long}).body)[:data][:attributes]
   end
   private
 
