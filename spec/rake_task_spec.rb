@@ -8,7 +8,7 @@ describe 'rake task' do
     cities = cities_csv.map do |row|
       row[0..1].join(",")
     end
-    binding.pry
+    #binding.pry
 
     cities.each do |city|
       expect($redis.get(city)).to eq(nil)

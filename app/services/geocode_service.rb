@@ -1,5 +1,4 @@
 class GeocodeService
-  include ApiService
   def lat_long(location)
      response = conn.get('json', 'address': location)
      json = parse(response.body)
@@ -14,5 +13,9 @@ class GeocodeService
      f.adapter Faraday.default_adapter
      f.params['key'] = ENV['GOOGLE_API']
    end
+ end
+
+ def parse(json_string)
+   JSON.parse(json_string, symbolize_names: true)
  end
 end
