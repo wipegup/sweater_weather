@@ -3,6 +3,7 @@ require 'rails_helper'
 describe 'rake task' do
   it 'populates redis with forecasts for top 50 cities' do
 
+    $redis.flushdb
     Rails.application.load_tasks
     cities_csv = CSV.open('./top_cities.csv', headers: true)
     cities = cities_csv.map do |row|

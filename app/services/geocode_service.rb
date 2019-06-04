@@ -14,12 +14,12 @@ class GeocodeService
    lng = hash[:lng].to_s
    if as == String
      return [lat,lng].join(",")
-   elsif as == Array
-     return [lat,lng]
-   elsif as.class == Array
-     return {as[0]=>lat, as[1]=>lng}
-   else
-     puts "Incorrect format"
+   # elsif as == Array
+   #   return [lat,lng]
+   # elsif as.class == Array
+   #   return {as[0]=>lat, as[1]=>lng}
+   # else
+   #   puts "Incorrect format"
    end
 
 
