@@ -1,7 +1,8 @@
 class WeatherFacade < BaseFacade
 
   def self.forecast(location)
-    weather.forecast(location)
+    forecast = weather.forecast(location)
+    WeatherSerializer.serialize(forecast)
   end
   private
 

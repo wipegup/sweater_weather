@@ -21,7 +21,7 @@ describe 'request using city' do
     expect(forecast[:latitude]).to eq(latitude)
     expect(forecast[:longitude]).to eq(longitude)
 
-    keys =  %i(currently minutely hourly daily)
+    keys =  %i(currently hourly daily)
     keys.each do |key|
       expect(forecast.keys).to include(key)
     end
@@ -46,7 +46,7 @@ describe 'request using city' do
     expect(forecast[:latitude]).to eq(latitude)
     expect(forecast[:longitude]).to eq(longitude)
 
-    keys =  %i(currently minutely hourly daily)
+    keys =  %i(currently hourly daily)
     keys.each do |key|
       expect(forecast.keys).to include(key)
     end

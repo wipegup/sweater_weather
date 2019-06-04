@@ -3,8 +3,8 @@ class GeocodeService
   def lat_long(location, as = String)
      response = conn.get('json', 'address': location)
      json = parse(response.body)
-     hash = json[:results][0][:geometry][:location]
-     format_lat_long(hash, as)
+     lat_long = json[:results][0][:geometry][:location]
+     format_lat_long(lat_long, as)
    end
 
  private
