@@ -1,8 +1,13 @@
 class WeatherFacade < BaseFacade
 
   def self.forecast(location)
-    forecast = weather.forecast(location)
-    WeatherSerializer.serialize(forecast)
+    location = location.downcase
+    if $redis.get(location)
+      return $redis.get(location)
+    else
+      forecast = weather.forecast(location)
+      WeatherSerializer.serialize(forecast)
+    end
   end
   private
 

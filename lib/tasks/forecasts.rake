@@ -7,8 +7,8 @@ namespace :forecasts do
     end
 
     cities.each do |c|
-      puts c
-      $redis.set(c, WeatherFacade.forecast(c))
+      puts c.downcase
+      $redis.set(c.downcase, WeatherFacade.forecast(c.downcase))
     end
   end
 
