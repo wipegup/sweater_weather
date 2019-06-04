@@ -1,4 +1,5 @@
 class GeocodeService
+  include ApiService::ConvenienceMethods
   def lat_long(location)
      response = conn.get('json', 'address': location)
      json = parse(response.body)
