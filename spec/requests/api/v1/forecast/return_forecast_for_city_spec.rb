@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'request using city' do
   it 'returns forecast for denver' do
     get '/api/v1/forecast?location=denver,co'
-
+    binding.pry
     # ds_url = "https://api.darksky.net/forecast/#{ENV['DARK_SKY_API']}/39.7392358,-104.990251"
     # ds_body =  File.open('./api_responses/dark_sky_denver.json')
     # stub_request(:get, ds_url).to_return(body: ds_body)
