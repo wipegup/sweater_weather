@@ -1,7 +1,7 @@
 class Api::V1::FavoritesController < ApplicationController
 
   def create
-    binding.pry
+    # binding.pry
     if user
       Favorite.create(user: user, location: request.headers['HTTP_LOCATION'])
       render json: {status: 'success', location: request.headers['HTTP_LOCATION']}
