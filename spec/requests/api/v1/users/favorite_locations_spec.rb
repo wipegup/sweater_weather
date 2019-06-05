@@ -19,7 +19,6 @@ describe Api::V1::FavoritesController do
 
     expect(response).to be_successful
     expect(user.favorites.last.location).to eq("Denver, CO")
-    # #binding.pry
   end
 
   it 'can get favorite locations' do

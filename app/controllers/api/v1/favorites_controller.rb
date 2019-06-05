@@ -1,7 +1,6 @@
 class Api::V1::FavoritesController < ApplicationController
 
   def create
-    # binding.pry
     if user
       Favorite.create(user: user, location: request.headers['HTTP_LOCATION'])
       render json: {status: 'success', location: request.headers['HTTP_LOCATION']}
@@ -26,10 +25,10 @@ class Api::V1::FavoritesController < ApplicationController
       data = user.favorites.map do |fav|
         {
           'location': fav.location,
-          'current_weather': WeatherFacade.forecast(fav.location)
+          'current_weather': JSON.parse(WeatherFacade.forecast(fav.location))
         }
       end
-        render json: data
+        render json: data.as_json
     else
       render status: 401
     end
