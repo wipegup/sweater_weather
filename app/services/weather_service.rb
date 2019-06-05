@@ -1,8 +1,6 @@
 class WeatherService
   include ApiService
-  def initialize
-
-  end
+  include ApiService::ConvenienceMethods
 
   def forecast(location)
     lat_long = geocode(location)
@@ -18,8 +16,4 @@ class WeatherService
     end
   end
 
-  def geocode(location)
-    @_geocode_service ||= GeocodeService.new
-    @_geocode_service.lat_long(location)
-  end
 end
