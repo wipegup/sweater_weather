@@ -1,7 +1,7 @@
 class FlickrService
   include ApiService
   include ApiService::ConvenienceMethods
-  
+
   def landscape(location)
     lat_long = geocode(location).split(",")
     lat_long = {lat: lat_long[0].to_s, lon: lat_long[1].to_s}
