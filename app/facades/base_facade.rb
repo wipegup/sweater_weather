@@ -1,0 +1,4 @@
+class BaseFacade
+
+
+end
