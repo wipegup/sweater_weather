@@ -3,6 +3,7 @@ class Api::V1::FavoritesController < ApplicationController
   def create
     if user
       Favorite.create(user: user, location: request.headers['location'])
+      render json {status: 'success', location: request.headers['location']}
     else
       render status: 401
     end
